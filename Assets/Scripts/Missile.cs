@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class Missile : MonoBehaviour
+{
+    [SerializeField] private float missileSpeed;
+    
+    private Rigidbody2D _rigidbody2D;
+
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody2D.AddForce(Vector2.left * (missileSpeed * Time.deltaTime), ForceMode2D.Impulse);
+    }
+    
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+}
