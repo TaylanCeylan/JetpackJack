@@ -256,7 +256,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.07, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5f9efa27e59314ba33d435d6c98c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 1662186826719549878, guid: 390fe0951e54d41478d7dc182fd42a74, type: 3}
+  obstaclePrefab: {fileID: 3508014428692877985, guid: 390fe0951e54d41478d7dc182fd42a74, type: 3}
 --- !u!4 &534190816
 Transform:
   m_ObjectHideFlags: 0
