@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance {get; private set;}
-    
+    public static InputManager Instance { get; private set; }
+
     private InputActions inputActions;
 
     private void Awake()
     {
         Instance = this;
-        
+
         inputActions = new InputActions();
         inputActions.Enable();
     }
@@ -20,12 +20,9 @@ public class InputManager : MonoBehaviour
         Jack.Instance.OnCrash += JackOnCrash;
     }
 
-    private void JackOnCrash(bool obj)
+    private void JackOnCrash()
     {
-        if (obj)
-        {
-            inputActions.Disable();
-        }
+        inputActions.Disable();
     }
 
     public bool IsJetThrustPressed()

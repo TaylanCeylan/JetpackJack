@@ -23,6 +23,21 @@ public class Obstacle : MonoBehaviour
 
     private void Start()
     {
+        SetInitials();
+    }
+
+    private void Update()
+    {
+        SetMotion();
+        
+        if (transform.position.x <= -25)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void SetInitials()
+    {
         float obstaclePositionUpperY = 0f;
         float obstaclePositionLowerY = 0f;
         
@@ -45,7 +60,7 @@ public class Obstacle : MonoBehaviour
         _obstacleCollider2D.size = new Vector2(_obstacleWidth - 1, _obstacleCollider2D.size.y);
     }
 
-    private void Update()
+    private void SetMotion()
     {
         if (_canRotate)
         {

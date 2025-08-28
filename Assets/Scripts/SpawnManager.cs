@@ -1,0 +1,56 @@
+using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class SpawnManager : MonoBehaviour
+{
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private GameObject obstaclePrefab;
+
+    private float _missileSpawnDelay;
+    private float _obstacleSpawnDelay;
+    private bool _isJackCrashed = false;
+
+    private void Start()
+    {
+        _missileSpawnDelay = Random.Range(2f, 6f);
+        _obstacleSpawnDelay = Random.Range(1f, 5f);
+        Jack.Instance.OnCrash += InstanceOnOnCrash;
+    }
+
+    private void InstanceOnOnCrash()
+    {
+        _isJackCrashed = true;
+    }
+
+    private void Update()
+    {
+        if (!_isJackCrashed)
+        {
+            SpawnMissile();
+            SpawnObstacle();
+        }
+    }
+
+    private void SpawnMissile()
+    {
+        _missileSpawnDelay -= Time.deltaTime;
+
+        if (_missileSpawnDelay <= 0)
+        {
+            Instantiate(missilePrefab, new Vector2(19f, Jack.Instance.GetCoordinateY()), Quaternion.identity);
+            _missileSpawnDelay = Random.Range(2f, 6f);
+        }
+    }
+
+    private void SpawnObstacle()
+    {
+        _obstacleSpawnDelay -= Time.deltaTime;
+
+        if (_obstacleSpawnDelay <= 0)
+        {
+            Instantiate(obstaclePrefab, new Vector3(19f,0f,0f), Quaternion.identity);
+            _obstacleSpawnDelay = Random.Range(1f, 5f);
+        }
+    }
+}
