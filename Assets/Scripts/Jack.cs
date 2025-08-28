@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Jack : MonoBehaviour
 {
     public static Jack Instance {get; private set;}
+
+    public event Action<bool> OnCrash;
     
     [SerializeField] private float jetpackForce;
     [SerializeField] private float minVelocityRangeY;
     [SerializeField] private float maxVelocityRangeY;
 
     private Rigidbody2D _rigidbody2D;
+    private bool _isCrashed = false;
 
     private void Awake()
     {
@@ -28,7 +32,7 @@ public class Jack : MonoBehaviour
 
     private void JetpackThrust()
     {
-        if (Keyboard.current.wKey.isPressed)
+        if (InputManager.Instance.IsJetThrustPressed())
         {
             _rigidbody2D.AddForce(Vector2.up * (jetpackForce * Time.deltaTime), ForceMode2D.Impulse);
         }
@@ -42,6 +46,14 @@ public class Jack : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Missile missile))
         {
             missile.DestroySelf();
+            _isCrashed = true;
+            OnCrash?.Invoke(_isCrashed);
+        }
+
+        if (other.gameObject.TryGetComponent(out Obstacle obstacle))
+        {
+            _isCrashed = true;
+            OnCrash?.Invoke(_isCrashed);
         }
     }
 

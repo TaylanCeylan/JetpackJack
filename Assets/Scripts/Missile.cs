@@ -14,6 +14,7 @@ public class Missile : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.AddForce(Vector2.left * (missileSpeed * Time.deltaTime), ForceMode2D.Impulse);
+        _rigidbody2D.linearVelocityX = Mathf.Clamp(_rigidbody2D.linearVelocityX, -20f, 0f);
     }
     
     public void DestroySelf()
