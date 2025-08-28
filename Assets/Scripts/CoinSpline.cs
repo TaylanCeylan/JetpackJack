@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Splines;
-using Object = UnityEngine.Object;
 
 public class CoinSpline : MonoBehaviour
 {
@@ -23,5 +22,10 @@ public class CoinSpline : MonoBehaviour
         {
             Instantiate(coinPrefab, new Vector2(_knots[i].Position.x + transform.position.x, _knots[i].Position.y + transform.position.y), Quaternion.identity);
         }
+    }
+
+    private void Update()
+    {
+        Destroy(gameObject);
     }
 }

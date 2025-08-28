@@ -52,6 +52,11 @@ public class Jack : MonoBehaviour
         {
             OnCrash?.Invoke();
         }
+
+        if (other.gameObject.TryGetComponent(out Coin coin))
+        {
+            coin.DestroySelf();
+        }
     }
 
     public float GetCoordinateY()
