@@ -15,14 +15,12 @@ public class InputManager : MonoBehaviour
         inputActions.Enable();
     }
 
-    private void Start()
+    private void Update()
     {
-        Jack.Instance.OnCrash += JackOnCrash;
-    }
-
-    private void JackOnCrash()
-    {
-        inputActions.Disable();
+        if (GameManager.Instance.GetIsJackCrashed())
+        {
+            inputActions.Disable();
+        }
     }
 
     public bool IsJetThrustPressed()

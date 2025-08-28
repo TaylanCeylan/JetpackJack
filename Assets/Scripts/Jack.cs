@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 public class Jack : MonoBehaviour
 {
     public static Jack Instance {get; private set;}
-
+    
     public event Action OnCrash;
+    public event Action OnCoinPickUp;
     
     [SerializeField] private float jetpackForce;
     [SerializeField] private float minVelocityRangeY;
@@ -56,6 +57,7 @@ public class Jack : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Coin coin))
         {
             coin.DestroySelf();
+            OnCoinPickUp?.Invoke();
         }
     }
 

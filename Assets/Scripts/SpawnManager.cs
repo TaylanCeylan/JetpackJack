@@ -11,24 +11,17 @@ public class SpawnManager : MonoBehaviour
     private float _missileSpawnDelay;
     private float _obstacleSpawnDelay;
     private float _coinSplineSpawnDelay;
-    private bool _isJackCrashed = false;
 
     private void Start()
     {
         _missileSpawnDelay = Random.Range(2f, 6f);
         _obstacleSpawnDelay = Random.Range(1f, 5f);
         _coinSplineSpawnDelay = Random.Range(1f, 3f);
-        Jack.Instance.OnCrash += InstanceOnOnCrash;
     }
-
-    private void InstanceOnOnCrash()
-    {
-        _isJackCrashed = true;
-    }
-
+    
     private void Update()
     {
-        if (!_isJackCrashed)
+        if (!GameManager.Instance.GetIsJackCrashed())
         {
             SpawnMissile();
             SpawnObstacle();
