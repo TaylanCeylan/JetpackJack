@@ -21,6 +21,10 @@ public class InputManager : MonoBehaviour
         {
             inputActions.Disable();
         }
+        // else
+        // {
+        //     inputActions.Enable();
+        // }
     }
 
     public bool IsJetThrustPressed()

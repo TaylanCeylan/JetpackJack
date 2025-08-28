@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +41,18 @@ public class GameManager : MonoBehaviour
         {
             _score += Time.deltaTime * 20f;
         }
+        
+        if (_isJackCrashed)
+        {
+            StartCoroutine(CrashRestartDelay());
+        }
+    }
+
+    IEnumerator CrashRestartDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        _isJackCrashed = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public float GetScore()
